@@ -1,0 +1,57 @@
+.imgintro_droite {
+  position: absolute;
+  top: 5vh; /* Hauteur relative à l’écran */
+  right: 2vw; /* Décale en fonction de la largeur de l’écran */
+  width: 15vw; /* Taille relative */
+  max-width: 300px; /* Limite la taille pour ne pas être trop grande */
+  height: auto;
+}
+
+.imgintro_gauche {
+    position: absolute;
+    top: 4vh;
+    left: 2vw;
+    width: 12vw;
+    max-width: 200px;
+    height: auto;
+    border: 5px solid white; /* Contour blanc */
+    box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.6); /* Ajoute un léger halo */
+    border-radius: 8px; /* Arrondit légèrement les bords */
+}
+
+
+.img-uniforme {
+  width: auto; /* La largeur s'ajuste automatiquement */
+  height: 200px; /* Hauteur fixe pour toutes les images */
+  object-fit: cover;
+}
+
+.text-box {
+    background-color: rgb(48, 34, 241); /* Fond blanc */
+    padding: 20px; /* Espacement intérieur */
+    display: inline-block; /* Empêche l'élément de prendre toute la largeur */
+    border-radius: 5px; /* Coins légèrement arrondis */
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1); /* Ombre douce */
+}
+
+body {
+    background-color: rgba(63, 86, 239, 0.892); /* Marron chocolat */
+}
+
+.card {
+    width: 100%; /* Élargit chaque carte */
+    max-width: 1000px; /* Limite la taille maximale */
+}
+
+.card-body {
+    padding: 50px; /* Augmente l’espace intérieur */
+}
+
+.row {
+    justify-content: center; /* Centre les cartes */
+}
+
+.col-lg-4 {
+    flex: 1; /* Assure une répartition uniforme */
+    max-width: 450px; /* Ajuste la taille */
+}

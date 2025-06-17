@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrousel de 4 blocs</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/joli_bd.css">
+
+    
+</head>
+<body>
+
+<button class="page-button left-button" onclick="changeSlide('prev')">← Précédent</button>
+<button class="page-button right-button" onclick="changeSlide('next')">Suivant →</button>
+
+<div id="carouselExample" class="carousel slide" data-bs-interval="false">
+
+    
+
+    <div class="carousel-inner">
+    <!-- Bloc 3 à la place du Bloc 1 -->
+    <div class="carousel-item active">
+        <div class="d-block w-100 bg-secondary text-white text-center p-5">Modélisation de base de données</div>
+        <div class="carousel-content bloc3">
+            <img src="img/FilRougeMCD_CyprienLOUIS.drawio (1) (1).png" alt="Image du Bloc 3">
+        </div>
+    </div>
+    
+    <!-- Bloc 2 reste inchangé -->
+    <div class="carousel-item">
+        <div class="d-block w-100 bg-secondary text-white text-center p-5">Requete SQL sur Pgadmin et Postgresql</div>
+        <div class="carousel-content bloc2">
+            <img src="img/Capture d’écran 2025-05-30 122017.jpg" alt="Image du Bloc 2">
+        </div>
+    </div>
+
+    <!-- Bloc 1 à la place du Bloc 3 -->
+                <div class="carousel-item">
+        <div class="d-block w-100 bg-secondary text-white text-center p-4">
+            Développement des compétences SQL grâce au projet tutoré
+        </div>
+        <div class="container-fluid">
+            <div class="row align-items-stretch">
+            <!-- Image à gauche -->
+            <div class="col-md-6 p-0">
+                <img src="img/page_1.png" alt="Image du Bloc 1" class="img-fluid object-fit-cover">
+            </div>
+            
+
+            <!-- Bloc texte à droite -->
+            <div class="col-md-6 d-flex align-items-center justify-content-center">
+                <div class="white-block text-white p-4">
+                    <p class="mb-0 text-center text-black">Lors de ce projet tutoré nous avons du comprendre traités et analyser une base de données de 14 millions de lignes</p>
+                </div>
+            </div>
+            
+            
+            </div>
+        </div>
+        <img src="img/image_top.jpg" alt="Nouvelle image" class="new-image">
+        </div>
+
+    <!-- Bloc 4 reste inchangé -->
+    <div class="carousel-item">
+        <div class="d-block w-100 bg-secondary text-white text-center p-5">Réalisation d'application de datavisualisation d'une base de données</div>
+        <div class="carousel-content bloc4">
+            <img src="img/frame (3).png" alt="Image du Bloc 4">
+            <div class="text-zone">
+            <a href="https://drive.google.com/file/d/1Ntjtx2wNT8kdeZTIkK25iak5GOFzoP4Z/view?usp=sharing" class="big-link" target="_blank">
+            Voir la vidéo de présentation
+            </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    function changeSlide(direction) {
+        const carousel = document.getElementById('carouselExample');
+        const bsCarousel = new bootstrap.Carousel(carousel);
+        if (direction === 'prev') {
+            bsCarousel.prev();
+        } else {
+            bsCarousel.next();
+        }
+    }
+</script>
+
+</body>
+</html>

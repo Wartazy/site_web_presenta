@@ -1,0 +1,29 @@
+https://data.geopf.fr/wfs/ows
+    ?SERVICE=WebGLTransformFeedback
+    &VERSION=2.0.0
+    &typeName=ADMINEXPRESS
+
+
+https://data.geopf.fr/wfs/ows
+?SERVICE=WfS
+&VERSION=2.0.0
+&tYPENAME=ADMINEXPRESS-COG-CARTO.LATEST:commune
+&OUTPUTFORMAT=application/json
+&REQUEST=GetFeature
+&cql_filter=siren_epci=241700434
+
+
+
+
+
+
+
+
+
+
+custom-layer {
+        background-image: url('assets/img/rochelle.png'); /* Chemin vers votre image */
+        background-size: cover; /* Couvre toute la zone */
+        background-repeat: no-repeat;
+    }
+    className: 'custom-layer'

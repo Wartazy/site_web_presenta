@@ -1,0 +1,288 @@
+$(document).ready(function(){
+
+    // --------------------------------------------Création d'une carte-------------------------------------- 
+    var map = L.map('map',{
+        center: [46.15, -1.15],
+        zoom : 13,
+        maxZoom: 25, // niveau de zoom max de la carte
+        minZoom: 5, // niveau de zoom mini de la carte
+        zoomControl: false, // Fait disparaitre les controles de zoom
+        doubleClickZoom: false
+
+    });
+    //----------------------------------OSM----------------------------------
+    var fondOSM = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', { 
+
+        maxZoom: 25, // Zoom max d'affichage
+        minZoom: 5, 
+        attribution:'&copy;<a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>' 
+    });
+    // ajout du fond OSM a la carte
+    fondOSM.addTo(map);
+    //--------------------------------orthophotoIGN---------------------------------
+
+    var ortho = new L.tileLayer('https://data.geopf.fr/wmts?SERVICE=WMTS&VERSION=1.0.0&REQUEST=GETTile'+
+        '&LAYER=HR.ORTHOIMAGERY.ORTHOPHOTOS'+
+        '&STYLE=normal'+
+        '&FORMAT=image/jpeg'+
+        '&TILEMATRIXSET=PM'+
+        '&TILEMATRIX={z}'+
+        '&TILEROW={y}'+
+        '&TILECOL={x}'
+    );
+
+    ortho.addTo(map);
+
+    //------------------------------plan IGn------------------------------------
+
+    var plan1 = new L.tileLayer('https://data.geopf.fr/wmts?SERVICE=WMTS&VERSION=1.0.0&REQUEST=GETTile'+
+        '&LAYER=GEOGRAPHICALGRIDSYSTEMS.PLANIGNV2'+
+        '&STYLE=normal'+
+        '&FORMAT=image/png'+
+        '&TILEMATRIXSET=PM'+
+        '&TILEMATRIX={z}'+
+        '&TILEROW={y}'+
+        '&TILECOL={x}'
+    );
+    plan1.addTo(map);
+
+
+
+    //----------------------- style---------------------------------------------
+    
+    function jolicommune(feature){
+        return{fillColor: 'yellow',
+            color: 'black',
+            fillOpacity:0.3,
+            weight: 1,
+            
+
+        }
+    }
+    
+//---------------------------------------- recup attribut ----------------------
+
+    function onEachCommune(feature, Layer){
+        console.log(feature);
+        var infoContent ='<h1>';
+            infoContent += feature.properties.nom;
+            infoContent += '</h1>';
+
+            for(var key in feature.properties){
+                infoContent +=  key + ': ' +'<span style="color: red;">' + feature.properties[key]+'</span><br>';
+            }
+
+            Layer.on('click',function(){
+                $('#info').html(infoContent);
+            
+            
+
+            });
+    }
+
+
+    //-------------------------------------------recup commune via flux + geojson-------------------------------
+    var vCommune_cda;
+
+    $.getJSON('https://data.geopf.fr/wfs/ows?SERVICE=WfS&VERSION=2.0.0&tYPENAME=ADMINEXPRESS-COG-CARTO.LATEST:commune&OUTPUTFORMAT=application/json&REQUEST=GetFeature&cql_filter=siren_epci=241700434', 
+    function(data){
+        vCommune_cda = L.geoJSON(data,{
+            style:jolicommune,
+            onEachFeature:onEachCommune
+        });
+        vCommune_cda.addTo(map);
+    
+    });
+    
+   
+
+//------------------------------------seuil visibilité-------------------------------------------------
+
+    map.on('zoomend',function(){
+        var zoom =map.getZoom();
+        console.log(zoom);
+    if($('#couche_commune').is(':checked')){
+            if(zoom> 10){
+                map.addLayer(vCommune_cda);
+            }else{
+                map.removeLayer(vCommune_cda)
+            }
+        }
+
+    });
+
+//-----------------------------------recup yelo ------------------------------------------------------------
+
+
+var cluster = L.markerClusterGroup({
+
+
+
+});
+
+$.getJSON('https://opendata.agglo-larochelle.fr/d4c/api/records/1.0/search/dataset=yelo___disponibilite_des_velos_en_libre_service&facet=station_nom',function(data){
+    data.records.forEach(record=>{console.log(record.fields.geo_points_2d);
+
+        var lat = record.fields.station_latitude;
+        var long = record.fields.station_longitude;
+        var accroches = record.fields.nombre_emplacements;
+        var velos = record.fields.velos_disponibles;
+        var taux = velos * 100/accroches;
+        var station_nom = record.fields.station_nom;
+        
+
+        var color  ;
+
+        if(taux >= 75){
+            color = 'green';
+        }else if(taux >25){
+            color = 'orange';
+        }else{
+            color = 'red';
+        }
+        
+        
+        var station = L.circleMarker([lat, long],{
+            fillColor : color
+
+        });
+
+        cluster.addLayer(station);
+
+        station.on('click', function(){
+            var infoVelo = '<b>'+station_nom+'</b><br>';
+            infoVelo += 'Nb vélos dispo:'+velos+'<br>';
+            infoVelo += 'Nb accroches dispo:'+accroches +'<br>';
+            infoVelo +='Taux vélos dispo:'+taux+'%<br>';
+            $('#info').html(infoVelo);
+
+
+
+            map.panTo([latitude, longitude]);
+        
+        });
+       cluster.addTo(map);
+        //station.addTo(map);
+
+    });
+
+        
+//// -------------------------------------------- barre info couche ------------------------------
+
+
+$('#fond_de_plan').change(function(){
+ 
+ var fondchoisi = $(this).val();
+ alert(fondchoisi)
+
+
+
+    if(fondchoisi == 'orthophoto'){
+        map.removeLayer(plan1);
+        map.removeLayer(fondOSM);
+        map.addLayer(ortho);
+    }
+    else if (fondchoisi == 'plan'){
+        map.addLayer(plan1);
+        map.removeLayer(fondOSM);
+        map.removeLayer(ortho);
+    }
+    else if (fondchoisi == 'fondOSM'){
+        map.removeLayer(plan1);
+        map.addLayer(fondOSM);
+        map.removeLayer(ortho);
+    }
+
+
+ }
+);
+
+    //--------------------------------------- Function coche décoche communes------------------------------------
+    $('#couche_commune').change(function()
+    {if(this.checked){
+        map.addLayer(vCommune_cda);
+    }else{
+        map.removeLayer(vCommune_cda)
+        }
+
+    });   
+    
+    //--------------------------------------- Function coche décoche yélo------------------------------------
+    $('#couche_yelo').change(function()
+    {if(this.checked){
+        map.addLayer(cluster);
+    }else{
+        map.removeLayer(cluster)
+        }
+
+    });  
+
+    //----------------------------------------Function création marqueur---------------------------------
+
+    var markerClic;
+
+    map.on('dblclick',function(event){
+
+        var lati = event.latlng.lat;
+        var long = event.latlng.lng;
+        
+        if (markerClic){
+            map.removeLayer(markerClic)
+        }
+
+        markerClic = L.marker([lati,long]);
+        markerClic.addTo(map);
+
+
+
+
+    // Récupérer l'adresse via l'API IGN
+    var urlApi = 'https://data.geopf.fr/geocodage/reverse?lon=';
+        urlApi += long;
+        urlApi += '&lat=';
+        urlApi += lati;
+        urlApi += '&index=address&limit=1&returntruegeometry=false';
+        console.log(urlApi);
+    $.getJSON(urlApi, function(data){
+
+        var adresse = data.features[0].properties.label;
+
+        markerClic.bindPopup(adresse);
+        markerClic.openPopup();
+        
+    });
+
+
+
+
+    });
+
+
+
+
+});
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+});

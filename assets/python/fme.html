@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrousel de FME</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/fme.css">
+    
+</head>
+<body>
+   <button class="page-button left-button" onclick="changeSlide('prev')">← Précédent</button>
+<button class="page-button right-button" onclick="changeSlide('next')">Suivant →</button>
+
+<div id="carouselExample" class="carousel slide" data-bs-interval="false">
+
+    
+
+    <div class="carousel-inner">
+    <!-- Bloc 3 à la place du Bloc 1 -->
+    <div class="carousel-item active">
+        <div class="d-block w-100 bg-secondary text-white text-center p-5">Compréhension du fonctionnement de FME</div>
+        <div class="carousel-content bloc3">
+            <img src="cours FME.jpg" alt="Image du Bloc 3">
+        </div>
+    </div>
+    
+    <!-- Bloc 2 reste inchangé -->
+    <div class="carousel-item">
+        <div class="d-block w-100 bg-secondary text-white text-center p-5">Compréhension du fonctionnement de FME</div>
+        <div class="carousel-content dernier">
+            <img src="Cours_2.jpg" alt="Image du Bloc 2">
+        </div>
+    </div>
+
+    <div class="carousel-item">
+        <div class="d-block w-100 bg-secondary text-white text-center p-5">Exemple d'exercices réalisés</div>
+        <div class="carousel-content dernier">
+            <img src="Cours_3.jpg" alt="Image du Bloc 2">
+        </div>
+    </div>
+
+    
+
+    
+           
+
+    
+</div>
+
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    function changeSlide(direction) {
+        const carousel = document.getElementById('carouselExample');
+        const bsCarousel = new bootstrap.Carousel(carousel);
+        if (direction === 'prev') {
+            bsCarousel.prev();
+        } else {
+            bsCarousel.next();
+        }
+    }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,15 @@
+
+.circuit {
+margin: 10px;
+padding: 0;
+background-image: url('img1/circuit2.png'); /* Remplacez par le chemin de votre image */
+background-size: cover; /* L'image couvre tout l'écran */
+background-position: center; /* L'image est centrée */
+background-repeat: no-repeat; /* Pas de répétition de l'image */
+height: 100vh; /* Assure que la hauteur de la page est de 100% de la fenêtre */
+}
+
+
+
+
+

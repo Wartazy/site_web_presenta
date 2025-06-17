@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="fr">
+<!-- En-tête de la page -->
+<head>
+    <meta charset="utf-8" />
+    <title>Titre de la page</title>
+    <link rel="stylesheet" href="course.css">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+
+        .circuit {
+            /* Ici tu peux ajouter un fond ou un style pour ta zone de jeu */
+            background-color: #f0f0f0;
+            height: 100vh;
+        }
+
+        #myImage {
+            position: absolute;
+            top: 10vh; /* Position en fonction de la hauteur de l'écran */
+            left: 10vw; /* Position en fonction de la largeur de l'écran */
+            width: 5vw; /* Largeur dynamique en fonction de l'écran */
+            transition: left 0.3s, top 0.3s, transform 0.3s;
+        }
+
+        #customMessage {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: rgb(255, 20, 147);
+            padding: 20px;
+            border: 5px solid rgb(0, 0, 0);
+            border-radius: 10px;
+            text-align: center;
+            font-size: 5vw; /* Taille de la police relative à la largeur de l'écran */
+            font-family: Arial, sans-serif;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Media Queries pour les écrans plus petits (mobile, tablettes) */
+        @media (max-width: 768px) {
+            #myImage {
+                width: 30vw; /* Augmenter la taille de l'image sur mobile */
+                top: 20vh;
+            }
+
+            #customMessage {
+                font-size: 7vw; /* Augmenter la taille du message sur mobile */
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+
+<!-- Corps de la page -->
+<body>
+    <!-- Fond -->
+    <div class="circuit"></div>
+    <div id="customMessage">
+      Bravo ! &#x1F601;
+    </div>
+    
+    <img id="myImage" src="img1/voiture2.png" alt="Image" width="100">
+    
+    <script>
+        let currentLeft = 10; /* Position initiale en vw */
+        let currentTop = 10; /* Position initiale en vh */
+        let checkpoints = [90]; /* Valeur de check avec les unités vw */
+        let movedDown = false; 
+        let rotated = false; 
+        let movedLeft = false;
+
+        document.getElementById('myImage').addEventListener('click', function() {
+            const imageWidth = this.offsetWidth; // Récupère la taille de l'image en pixels
+            const screenWidth = window.innerWidth; // Largeur de l'écran
+            const screenHeight = window.innerHeight; // Hauteur de l'écran
+
+            if (!rotated) {
+                currentLeft += 10; /* Déplacement horizontal en vw */
+                this.style.left = `${currentLeft}vw`;
+
+                if (checkpoints.includes(currentLeft)) {
+                    this.style.transform = 'rotate(90deg)';
+                    rotated = true;
+                }
+            } else if (!movedDown) {
+                currentTop += 10; /* Déplacement vertical en vh */
+                this.style.top = `${currentTop}vh`;
+
+                if (currentTop >= 90) { /* Si la position atteint 80% de l'écran */
+                    this.style.transform = 'rotate(180deg)';
+                    movedDown = true;
+                }
+            } else if (!movedLeft) {
+                currentLeft -= 10; /* Retourne vers la gauche */
+                this.style.left = `${currentLeft}vw`;
+
+                if (currentLeft <= 10) { /* Si l'image revient à la position de départ */
+                    this.style.transform = 'rotate(270deg)';
+                    movedLeft = true;
+                }
+            } else {
+                currentTop -= 10; /* Remonte l'image */
+                this.style.top = `${currentTop}vh`;
+
+                if (currentTop <= 10) { /* Retour au point de départ */
+                    this.style.transform = 'rotate(0deg)';
+
+                    // Afficher le message
+                    const customMessage = document.getElementById('customMessage');
+                    customMessage.style.display = 'block';
+
+                    // Cache le message après 3 secondes
+                    setTimeout(() => {
+                        customMessage.style.display = 'none';
+                    }, 3000);
+                }
+            }
+        });
+    </script> 
+
+</body>
+</html>

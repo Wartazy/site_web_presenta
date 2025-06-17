@@ -1,0 +1,54 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-image: url('../img/portfolio/arton200013.png'); /* Remplacez par le chemin de votre image */
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    overflow: hidden;
+}
+
+.content {
+    text-align: center;
+    color: rgb(3, 3, 3); /* Assurez-vous que le texte est lisible sur le fond */
+    width: 100%;
+    max-width: 1200px; /* Limite la largeur maximale du contenu */
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.titre {
+    font-size: 50px;
+    margin-bottom: 20px;
+}
+
+.Licencegeo {
+    font-size: 40px;
+    margin: 20px 0;
+    background-color: rgba(255, 255, 255, 0.5); /* Fond blanc avec 80% d'opacité */
+    display: inline-block;
+
+}
+
+.image-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 0;
+    max-height: 50vh; /* Limite la hauteur maximale du conteneur d'image */
+    overflow: hidden; /* Cache le débordement si l'image est trop grande */
+}
+
+.image-centrée {
+    max-width: 100%;
+    max-height: 100%;
+    height: auto;
+}
+

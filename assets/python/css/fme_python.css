@@ -1,0 +1,52 @@
+.text-zone_g_fme {
+    
+    position: absolute;
+    bottom: 10px; /* Positionne le texte en bas de l'image */
+    left: 10%; /* Positionne le texte à gauche */
+    width: 20%; /* Ajuste la largeur */
+    color: white;
+    text-align: center;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.text-zone_d_py {
+    position: absolute;
+    bottom: 5px; /* Positionne le texte en bas de l'image */
+    right: 15%; /* Positionne le texte à droite */
+    width: 20%; /* Ajuste la largeur */
+    color: white;
+    text-align: center;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.big-link {
+    display: block;
+    text-align: center;
+    font-size: 1.5em; /* Agrandit le texte */
+    font-weight: bold;
+    color: #ffffff; /* Texte blanc */
+    background-color: #1f2224; /* Fond bleu */
+    padding: 15px;
+    border-radius: 5px;
+    text-decoration: none; /* Supprime le soulignement */
+    width: 80%; /* Largeur adaptée */
+    margin: 10px auto; /* Centre le lien */
+}
+
+.section.right img {
+    position: relative;
+    left: 50px;
+    width: 80%; /* Ajuste la taille de l'image */
+    cursor: pointer;
+    border-radius: 5px; /* Ajoute des bordures arrondies */
+}
+
+.section.left img {
+    position: relative;
+    left: 50px;
+    width: 80%; /* Ajuste la taille de l'image */
+    cursor: pointer;
+    border-radius: 5px; /* Ajoute des bordures arrondies */
+}

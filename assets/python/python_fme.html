@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deux images cliquables</title>
+    <link href="css/fme_python.css" rel="stylesheet" />
+    <style>
+        .container {
+            display: flex;
+            width: 100%;
+            height: 100vh;
+        }
+        .section {
+            width: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .left {
+            background-color: #1c20e3;
+        }
+        .right {
+            background-color: #1471e2;
+        }
+        img {
+            width: 80%;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="section left">
+            <a href="fme.html"><img src="fme_wb.png" alt="Image gauche"></a>
+            <div class="text-zone_g_fme">
+            <a href="fme.html" class="big-link" target="_blank">
+            Découvrir mes compétences sur Fme
+            </a>
+            </div>
+        </div>
+        <div class="section right">
+            <a href="python.html"><img src="python.jpg" alt="Image droite"></a>
+            <div class="text-zone_d_py">
+            <a href="python.html" class="big-link" target="_blank">
+            Découvrir mes compétences en python
+            </a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
