@@ -11065,95 +11065,54 @@ html {
     font-size: 1rem;
     text-align: center;
     padding: 10px;
-    display: inline-block;
-    color: red !important; /* Force la couleur rouge */
+    display: block; /* Passer en block pour éviter des problèmes de largeur sur mobile */
+    color: red !important;
     background: none;
 }
 
 .lien2 a {
-    font-size: 1rem !important; /* Réduit la taille du texte */
-    color: red !important; /* Assure que le texte reste rouge */
-    text-decoration: underline; /* Supprime le soulignement */
+    font-size: 1rem !important;
+    color: red !important;
+    text-decoration: underline;
 }
+
 .lien3 {
-    font-size: 2rem; /* Texte en grande taille */
-    color: black; /* Texte noir */
-    background-color: rgba(255, 255, 255, 0.5); /* Fond blanc avec transparence */
-    text-align: center; /* Centre le texte */
-    padding: 15px; /* Espacement intérieur */
-    display: inline-block; /* Ajuste la taille au texte */
-    border-radius: 5px; /* Ajoute des bords arrondis */
+    font-size: 1.5rem; /* Réduction pour meilleure lisibilité mobile */
+    color: black;
+    background-color: rgba(255, 255, 255, 0.5);
+    text-align: center;
+    padding: 10px;
+    display: block;
+    border-radius: 5px;
 }
+
 .lien3 a {
-    color: black !important; /* Force la couleur du texte en noir */
-    text-decoration: none; /* Supprime le soulignement si nécessaire */
+    color: black !important;
+    text-decoration: none;
 }
 
-
-
+/* ============================
+   📌 Boutons
+   ============================ */
 .btn.btn-xl.btn-outline-light {
-  background-color: #ffffff; /* Fond blanc */
-  color: red !important; /* Texte rouge */
-  border: none; /* Supprime la bordure si nécessaire */
-  padding: 15px 30px;
-  font-size: 1.25rem;
-  border-radius: 8px;
-  text-decoration: none;
-  display: inline-block;
-  transition: background-color 0.3s ease, color 0.3s ease;
+    background-color: #ffffff;
+    color: red !important;
+    border: none;
+    padding: 12px 25px;
+    font-size: 1rem;
+    border-radius: 8px;
+    display: inline-block;
+    transition: 0.3s ease;
 }
 
 .btn.btn-xl.btn-outline-light:hover {
-  background-color: #f0f0f0; /* Légère variation au survol */
-  color: red !important; /* Texte rouge aussi au survol */
+    background-color: #f0f0f0;
+    color: red !important;
 }
 
-
-.Présentation {
-  background-image: url('../assets/img/fotolia.jpg');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    min-height: 600px; /* Ajustez la hauteur selon le besoin */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 50px 0;
-  }
-
-.overlay {
-    background-color: rgba(255, 255, 255, 0.1);
-    padding: 30px;
-    border-radius: 10px;
-    max-width: 100%;
-    margin: auto;
-    text-align: center;
-}
-
-.masthead {
-    width: 100vw; /* Prend toute la largeur de l'écran */
-    min-height: 100vh; /* Prend toute la hauteur de l'écran */
-    display: flex; /* Permet un alignement vertical */
-    justify-content: center; /* Centre le contenu horizontalement */
-    align-items: center; /* Centre le contenu verticalement */
-    padding: 20px;
-}
-
-.row.align-items-start {
-    display: flex;
-    align-items: stretch; /* Égalise la hauteur des colonnes */
-}
-
-.col-md-6, .col-lg-6 {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between; /* Équilibre les éléments */
-    align-items: center; /* Centre horizontalement */
-    text-align: center;
-    height: auto; /* Permet une adaptation dynamique */
-    min-height: 100%; /* Assure une hauteur homogène */
-}
-
+/* ============================
+   🌐 Images & Alignements
+   ============================ */
 .img-alignement {
     display: flex;
     justify-content: center;
@@ -11162,36 +11121,39 @@ html {
 }
 
 .img-alignement img {
-    max-width: 100%; /* Taille homogène pour les images */
-    height: auto; /* Garde les proportions */
+    max-width: 90%; /* Réduction pour éviter les débordements */
+    height: auto;
     display: block;
-    margin-bottom: 50px; /* Évite les espaces invisibles autour de l'image */
+    margin-bottom: 20px;
 }
 
+/* ============================
+   📱 Media Queries : Adaptation mobile
+   ============================ */
+@media (max-width: 768px) {
+    .lien2, .lien3 {
+        font-size: 1rem;
+        padding: 5px;
+    }
 
+    .lien2 h2 {
+        font-size: 2rem;
+    }
 
+    .img-alignement img {
+        width: 80%;
+        margin-bottom: 20px;
+    }
 
+    .col-md-6, .col-lg-6 {
+        display: block; /* Permet une meilleure gestion sur mobile */
+        width: 100%;
+    }
 
-.fs-1 {
-    font-size: 1.5rem;
+    .btn.btn-xl.btn-outline-light {
+        padding: 10px 20px;
+        font-size: 1rem;
+    }
 }
 
-.fs-5 {
-    font-size: 1.1rem;
-}
-
-
-
-.lien2 h2 {
-    font-size: 3rem; /* Agrandit le titre */
-    color: white !important; /* Change la couleur du texte en blanc */
-    text-transform: uppercase; /* Texte en majuscules pour plus d’impact */
-    text-decoration: underline; /* Ajoute un soulignement */
-    letter-spacing: 2px; /* Espacement entre les lettres */
-    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3); /* Ajoute une légère ombre */
-    background-color: rgba(255, 255, 255, 0.1); /* Fond blanc légèrement transparent */
-    padding: 10px; /* Ajoute un espacement autour du texte */
-    display: inline-block; /* Ajuste la taille du fond au texte */
-    border-radius: 5px; /* Arrondit légèrement les bords */
-}
 
