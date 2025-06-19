@@ -1,3 +1,32 @@
+@media (max-width: 768px) {
+    .titre {
+        font-size: 6vw; /* Ajusté pour les petits écrans */
+    }
+
+    .Licencegeo {
+        font-size: 4vw;
+        padding: 15px;
+    }
+
+    .image-centrée {
+        max-width: 90%;
+    }
+}
+
+@media (max-width: 768px) {
+    body, html {
+        justify-content: flex-start;
+    }
+
+    .titre {
+        font-size: 6vw;
+        margin-top: 40px; /* Tu peux ajuster cette valeur */
+    }
+
+    .content {
+        padding-top: 20px;
+    }
+}
 body, html {
     margin: 0;
     padding: 0;
